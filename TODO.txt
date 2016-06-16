@@ -1,0 +1,4 @@
+To do
+=====
+
+* A custom getter function to allow other fields / structures to be used (and a setter function?)

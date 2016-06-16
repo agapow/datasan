@@ -19,7 +19,7 @@ from .basecleaner import *
 
 ### CONSTANTS & DEFINES
 
-__VERSION__ = '0.1'
+__VERSION__ = '0.2'
 
 
 ### END ###

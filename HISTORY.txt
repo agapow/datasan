@@ -1,0 +1,14 @@
+History & changes
+=================
+
+
+0.2 (2016/6/16)
+--------------
+
+* incorporated old konval functionality, added library of sanitizers 
+
+
+0.1 (may 2016)
+--------------
+
+* initial development
