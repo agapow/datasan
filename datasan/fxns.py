@@ -5,10 +5,16 @@ Various functions for using validators.
 # TODO: "or" validator
 
 
-__docformat__ = "restructuredtext en"
-
-
 ### IMPORTS
+
+from __future__ import unicode_literals
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
+
+from builtins import str
 
 import exceptions
 
@@ -121,7 +127,7 @@ def assert_sanity (val, validators):
 	"""
 	try:
 		return sanitize (val, validators)
-	except exceptions.Exception, err:
+	except exceptions.Exception as err:
 		raise exceptions.AssertionError (str (err))
 	except:
 		raise exceptions.AssertionError ("an error occurred when sanitizing '%s'" % val)

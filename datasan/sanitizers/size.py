@@ -3,9 +3,6 @@ Validators that check value magnitude.
 
 """
 
-__docformat__ = "restructuredtext en"
-
-
 ### IMPORTS
 
 from __future__ import unicode_literals

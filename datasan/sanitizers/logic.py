@@ -3,9 +3,6 @@ Validators that logically combine or work with other validators.
 
 """
 
-__docformat__ = "restructuredtext en"
-
-
 ### IMPORTS
 
 from __future__ import unicode_literals
@@ -64,7 +61,7 @@ class Or (BaseValidator):
 			try:
 				new_val = v(value)
 				return new_val
-			except exceptions.Exception, err:
+			except exceptions.Exception as err:
 				last_err = err
 			except:
 				last_err = None

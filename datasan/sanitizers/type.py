@@ -3,9 +3,6 @@ Validators that confirm or convert types.
 
 """
 
-__docformat__ = "restructuredtext en"
-
-
 ### IMPORTS
 
 from __future__ import unicode_literals
@@ -13,7 +10,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 from builtins import str
-from  builtins import int
+from builtins import int
 from future import standard_library
 standard_library.install_aliases()
 
@@ -300,7 +297,7 @@ class StrToBool (Synonyms):
 		return Synonyms.convert_value (self, value.strip().upper())
 
 	def validate_value (self, value):
-		return value in defs.TRUE_FALSE_DICT.keys()
+		return value in list(defs.TRUE_FALSE_DICT.keys())
 
 	def make_validation_error_msg (self, bad_val, err):
 		return "can't recognise %s' as true or false" % (bad_val)

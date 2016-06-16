@@ -1,0 +1,19 @@
+Design & development
+====================
+
+
+* The biggest motivation behind this was the desire for documentable (or at least auditable) data cleaning.  This is not just in the long term (e.g. "What did I do 6 months ago?") but in the short term ("How did I handle that field? Where did I handle that field?"). We should at least be able to abstract away the boilerplate of *get old field* / *set new field*, so we can more clearly see what happens in between.
+
+* Should the chain object not incorporate the fields? It would make sense, devolving the chain to just the logic of the sequence of transformations, so it looks more like this::
+
+		(src_fields, Chain(), dest_field)
+
+* How and whether to pass multiple values is a tough question. There are many use cases in which you can see a single value emerges from a set of input values (e.g. a sum or mean). How to pass them along a chain is more difficult. At first keywords or a dict seemed the way, but there is the problems of how keywords would be set in the middle of a chain and what keywords functions would expect. There was the idea of treating everything - even single values - as a list, but this loses a lot of useful potential sanitizers (e.g. the whole string library) and there's all the malarkey about whether and how you convert somehting to a list. And then there was the idea of dereferncing the list and passing it in as ``*args``. This all got too difficult and so the simplest possible schema was adopted: whatever object a sanitizer returns, it get passed to the next sanitizer, as-is.
+
+* While the most common use will be to transform spreadsheets or other datafiles, datasan is agnostic as to what you'll be doing with it. You can consume structured data and spit out Python objects, it doesn't care.
+
+* Early on, I flirted with the idea of  multiple destination fields. Prima facie, it makes sense - if we're reading in from multiple fields, surely we might want to write out to multiple fields - but things soon get complicated. Why would you want to write out the same value to multiple fields? If multiple values emerge from the sanitizing chain, do we assign the sequence of all these values to each destination field? Or do we parcel them out one-by-one? This proved all to be too difficult, too hard to identify the best use case, so once again I devolved to the simplest possible scenario: write out the result to one field.
+
+* A simplifying assumption is that data is read from a source record and written out to a destination record. This allows us to treat the input data as immutable and avoid all sorts of issues about how and which fields to retain or delete.
+
+* Treating everything as a dict is similarly a useful assumption. Perhaps getter and setter functions can be provided as as to override this.

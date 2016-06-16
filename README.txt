@@ -7,16 +7,27 @@ A framework for sanitizing datasets
 Introduction and background
 ---------------------------
 
-Over the years, I've cleaned / munged / reshaped far too many datasets. While every dataset was different, the general shape of the problem was always the same: *take this blob of data, look at this field, do this to it, look at the next field ...* For complex datasets, the transforming script started to look like an indigestible mass of code, thwarting later attempts to understand what it doing. What I needed was a standard framework for transforming data, that took care of the boilerplate tasks, was easy to read and reference, and provided (or made easy) common transformation tasks.
+Over the years, I've cleaned / munged / reshaped far too many datasets. While
+every dataset was different, the general shape of the problem was always the
+same: *take this set of records, for every record look at this field, do this to
+it, look at the next field ...* For complex datasets, the transforming script
+started to look like an indigestible mass of code, thwarting later attempts to
+understand what it had done. What I needed was a more maintainable and standard
+framework for transforming data, that took care of the boilerplate tasks, was
+easy to read and reference, and provided (or made easy) common transformation
+tasks.
 
 Hence datasan, which provides:
 
-* A framework for iterating over records and targetted fields in a record
+* A framework for iterating over records and targeted fields in a record
+
 * A simple way of designating a source field (or set of fields) and the chain of transformations they will require
+
 * A simple idiom for transforming functions that will allow many existing functions to be used and more complex ones to be easily constructed from powerful base classes
-* A rich library of validation objects
 
+* A rich library of sanitizing functions
 
+You can use datasan at whatever level you like: the whole dataset cleaning level, chains of sanitizers for cleaning fields 
 
 Using datasan
 -------------
@@ -24,7 +35,8 @@ Using datasan
 Assumptions and idioms
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Datasan makes a number of simplifying assumptions, not all of which will suit everyone:
+Datasan makes a number of simplifying assumptions, not all of which will suit
+everyone:
 
 * A dataset is a sequence of records
 
@@ -32,7 +44,7 @@ Datasan makes a number of simplifying assumptions, not all of which will suit ev
 
 * Sanitizing data involves copying values from a source record to a new destination record
 
-* Sanitizing data includes both transforming / changing / converting it and validating / checking it. Validation is simply passing through the unchanged value if it is correct. (This was the great insight of Ian Bicking in his FormEncode package.)
+* Sanitizing data includes both transforming / changing / converting it and validating / checking it. Validation is simply passing through the unchanged value if it is correct. (This was the great insight of Ian Bicking in his FormEncode package which inspired this work.)
 
 * Sanitizing is achieved by passing data through a chain of sanitizing functions, each accepting the output of the previous
 

@@ -3,9 +3,6 @@ Validators that check value size or length.
 
 """
 
-__docformat__ = "restructuredtext en"
-
-
 ### IMPORTS
 
 from __future__ import unicode_literals

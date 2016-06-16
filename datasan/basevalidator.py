@@ -3,10 +3,15 @@ Abstract base class for easy construction of validators.
 
 """
 
-__docformat__ = "restructuredtext en"
-
-
 ### IMPORTS
+
+from __future__ import unicode_literals
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
+from future import standard_library
+from builtins import object
+standard_library.install_aliases()
 
 import exceptions
 
@@ -75,7 +80,7 @@ class BaseValidator (object):
 		try:
 			conv_val = self.convert_value (value)
 			return conv_val
-		except exceptions.Exception, err:
+		except exceptions.Exception as err:
 			self.raise_conversion_error (value, err)
 		except:
 			self.raise_conversion_error (value, None)
@@ -146,7 +151,7 @@ class BaseValidator (object):
 				return
 			else:
 				raise
-		except exceptions.Exception, err:
+		except exceptions.Exception as err:
 			self.raise_validation_error (value, err)
 		except:
 			self.raise_validation_error (value, None)

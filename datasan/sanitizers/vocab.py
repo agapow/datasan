@@ -3,9 +3,6 @@ Validators that remap values or check vocabulary membership.
 
 """
 
-__docformat__ = "restructuredtext en"
-
-
 ### IMPORTS
 
 from __future__ import unicode_literals
@@ -123,7 +120,7 @@ class Vocab (BaseValidator):
 		"""
 		Generate an meaningful error message for a membership problem.
 		"""
-		return "'%s' is not a member of %s" % (bad_val, self.conv_dict.keys())
+		return "'%s' is not a member of %s" % (bad_val, list(self.conv_dict.keys()))
 
 
 
